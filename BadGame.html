@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- saved from url=(0033)http://somefun.azurewebsites.net/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    
+<title> BadGame</title>
+
+    </head><body><ul>
+  <li><a href="https://somefun.azurewebsites.net/htp.html">How to Play</a></li>
+  <li><a href="https://somefun.azurewebsites.net/crash.html">Crash Me</a></li>
+  <li><a href="https://somefun.azurewebsites.net/about.html">About</a></li> 
+  <li></li>
+</ul>
+    <link rel="stylesheet" type="text/css" href="./BadGame_files/sti.css">
+    <h1>Linkeydoo's BadGame</h1>
+    <style>
+    
+	</style>
+<textarea readonly="" id="JSoutput" "="">
+Your adventure starts walking down a windy road in the middle of the forest.
+As you walk down the road you start to see a the outline of a goblin.
+As you get closer the goblin notices you. It wants to fight.
+You have two choices. run or fight. You don not know if you will be able to escape by running.
+
+You found a weapon!
+Stab = 5
+Slash = 8 
+
+
+After you killed the goblins you noticed it dropped 1 health potion, Would you like to take it? If so, type heal to heal in the middle of a battle, this will take one turn.
+
+------------------------------------------
+You arrive at a intersection for three roads. The one on the left Is dark and gloomy. The one in the center is bright, so bright you can not see what lies down the road. The path on the right looks normal, almost to normal to be near the other two roads.
+
+you walk home and live happly alone because you have no friends</textarea>
+<script src="./BadGame_files/jquery.js.download"></script>
+<script language="javascript">
+	
+//just need to make these public...
+var yHP = 20;
+var stab = 3;
+var slash = 5;
+var kill = 100;
+var eHP = 1;
+var type = "";
+var weapon = 0;
+var pots = 0;
+story();
+	
+function checkTextareaHeight()
+{
+   var textarea = document.getElementById("JSoutput");
+   if(textarea.selectionStart == textarea.selectionEnd) {
+      textarea.scrollTop = textarea.scrollHeight;
+   }
+}
+function addText(elId,text)
+{
+    var obj = document.getElementById(elId);
+    var txt = document.createTextNode(text);
+    obj.appendChild(txt);
+    
+    
+}
+function wepOne()
+{
+    addText("JSoutput", "\n")
+    addText("JSoutput", "\nYou found a weapon!");
+    addText("JSoutput", "\nStab = 5");
+    addText("JSoutput", "\nSlash = 8 ");
+    addText("JSoutput", "\n")
+    checkTextareaHeight();
+    confirm("You found a weapon!");
+    stab = 5;
+    slash = 8;
+}
+function runaway()
+{
+    addText("JSoutput", "\n   You have chosen to run...");
+    var escap = randomIntFromInterval(1,5);
+    if(escap === 2)
+    {
+        appear();
+    }
+}
+function wyd()
+{
+    var idunno = prompt("What do you want to do?");
+    switch (idunno) 
+    {
+        case "run":
+            runaway();
+        
+            addText("JSoutput", "\n   you have ran away sucessfully.");
+            checkTextareaHeight();
+            break;
+        case "fight":
+            gbln();
+            addText("JSoutput", "\nyou chose to fight");
+            checkTextareaHeight();
+            break;
+    }
+}
+function storyT()
+{
+    wyd();
+    window.setTimeout(thi, 2000);
+    
+}
+function storyTH()
+{
+	addText("JSoutput", "\n");
+    addText("JSoutput", "\nAfter you killed the goblins you noticed it dropped 1 health potion, Would you like to take it? If so, type heal to heal in the middle of a battle, this will take one turn.");
+    checkTextareaHeight();
+    window.setTimeout(storyTHP, 4000);
+}
+function storyTHP()
+{
+    var potApp = prompt("Take Health Potion?");
+    if (potApp === "yes")
+    {
+    	pots++;
+    	addText("JSoutput", "\n");
+    	addText("JSoutput", "\nYou have taken the health pot. Smart choice. You now have " + pots +" potions");
+	   checkTextareaHeight();	
+    }
+    window.setTimeout(storyF, 4000);
+    
+}
+function storyF()
+{
+	addText("JSoutput", "\n");
+	addText("JSoutput", "\n------------------------------------------")
+	addText("JSoutput", "\nYou arrive at a intersection for three roads. The one on the left Is dark and gloomy. The one in the center is bright, so bright you can not see what lies down the road. The path on the right looks normal, almost to normal to be near the other two roads.");
+	addText("JSoutput", "\n");
+    checkTextareaHeight();
+	window.setTimeout(storyFP, 7000);
+    
+}
+function storyFP()
+{
+	var paths = prompt("What path do you chose to go down. left, right, or center");
+	switch (paths)
+	{
+		case "left":
+			addText("JSoutput", "\n-As you walk down the path it becomes harder and harder to see.\n" + "-you decide that this might not be a good path to go down.\n\n" + "-as you turn around to walk back to the intersection you relies that the path behind you have started to close.\n" +
+                "-You are trapped and the trees start to close in on you as if hey were alive.\n\n --You died a slow and painful death.");
+                checkTextareaHeight();
+		break;
+		case "right":
+			addText("JSoutput", "\nyou chose right");
+		break;
+		case "center":
+			addText("JSoutput", "\nyou chose center");
+		break;
+		default: 
+			addText("JSoutput", "\nyou walk home and live happly alone because you have no friends");
+		break;
+	}
+	
+		
+}
+function story()
+{
+    var hio = prompt ("do you want to play a game?");
+    if (hio == "yes")
+    {
+        addText("JSoutput", "\nYour adventure starts walking down a windy road in the middle of the forest.");
+        addText("JSoutput", "\nAs you walk down the road you start to see a the outline of a goblin.");
+        addText("JSoutput", "\nAs you get closer the goblin notices you. It wants to fight.");
+        addText("JSoutput", "\nYou have two choices. run or fight. You don not know if you will be able to escape by running.");
+        
+        window.setTimeout(storyT, 8000);
+        checkTextareaHeight();
+         
+    }
+    else if(hio === "no")
+    {
+        window.open("http://somefun.azurewebsites.net/crashT");   
+    }
+}
+function thi()
+{
+	wepOne();
+    confirm("Another goblin appears. fight or run");
+    wyd();
+    window.setTimeout(storyTH, 4000);
+}
+
+
+function gbln()
+{
+    type = "Goblin";
+    eHP = level(randomIntFromInterval(10, 30));
+    combat();
+}
+function snake()
+{
+    type = "Snake";
+    eHP = level(randomIntFromInterval(30, 60));
+    combat();
+}
+function appear()
+{
+    var chance = randomIntFromInterval(0, 100);
+    if(chance < 50 )
+    {
+        gbln();
+    }
+    if(chance > 50 )
+    {
+        snake();
+    }
+    
+}
+
+
+
+
+
+
+function randomIntFromInterval(min,max)
+{
+    return Math.floor(Math.random()*(max-min+1)+min);
+}
+
+
+
+function level(lvl)
+{
+    return (lvl/2) + 2;
+}
+
+function combat()
+{
+    addText("JSoutput", "\nA " + type +  " has appeared with " + eHP + "Hp");
+    while (eHP > 0)
+    {
+        addText("JSoutput", "\n");
+        var dmg = prompt("The " + type +" now has " + eHP + "Hp" + ".          your hp is " + yHP);
+        switch (dmg)
+        {
+        	case "heal":
+        		if(pots >= 1)
+        		{
+        			yHP = yHP + 5;
+        			addText("JSoutput", "\nyou have healed 5 HP")
+        			pots = pots - 1;
+        		}
+        		else
+        		{
+        			addText("JSoutput", "\nyou cant heal with no pots.")
+        		}
+        		break;
+            case "stab":
+                eHP = (eHP - stab);
+                
+                addText("JSoutput", "\nYou used stab");
+                addText("JSoutput", "\n   -the " + type +" now has " + eHP + "hp");
+                
+                break;
+            case "slash":
+                eHP = (eHP - slash);
+                addText("JSoutput", "\nYou used slash");
+                addText("JSoutput", "\n   -the " + type +" now has " + eHP + "hp");
+                
+                break;
+            case "end":
+                eHP = (eHP - kill);
+                addText("JSoutput", "\nYou used swing");
+                addText("JSoutput", "\n   -the " + type +" now has " + eHP + "hp");
+                
+                break;
+            
+                
+        }
+        
+        
+        var hitChance = randomIntFromInterval(0,100);
+        if (dmg === "block")
+        {
+            hitChance = randomIntFromInterval(0,50);
+        }
+        if (hitChance > 40 && dmg != "block")
+        {
+            var damage = randomIntFromInterval(0,3); 
+            yHP = (yHP - damage);
+            addText("JSoutput", "\n   -You have been Hit! Your HP is now " + yHP);
+        }
+        else
+        {
+            addText("JSoutput", "\n");
+            addText("JSoutput", "\nThe " + type +" has missed!");
+        }
+        addText("JSoutput", "\n");
+    }
+    checkTextareaHeight();
+    addText("JSoutput", "\nThe  " + type +" has been slain");
+    var dropChance = randomIntFromInterval(0,100);
+    if (dropChance > 80)
+    {
+    	pots++;
+    	addText("JSoutput", "\n");
+    	addText("JSoutput", "\nYou have found a HealthPot!");
+        checkTextareaHeight();
+    }
+}
+
+
+</script>
+
+
+
+    <div class="one"><p><b>Attacks:</b><br>
+        slash<br>
+        stab<br>
+        heal<br>
+        end (Cheater)</p>
+        <p></p> 
+    </div>
+    
+    <div class="two">
+        <p><b>Other commands</b><br>
+        run<br>
+        fight<br>
+        
+        </p>
+    </div>
+
+<footer> BadGame™ Created by Linkeydoo on 10/25/16 <br>
+     (its not trademarked but i like the way it looks)</footer>
+</body></html>
